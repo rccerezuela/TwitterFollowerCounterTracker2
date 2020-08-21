@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "needle": "^2.5.0"
-  }
+  "dependencies": {}
 }
