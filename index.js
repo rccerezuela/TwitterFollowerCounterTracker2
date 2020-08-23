@@ -6,7 +6,14 @@ const { promisify } = require('util')
 
 getTwitterUserProfileWithOAuth2('elcorteingles')
     .then((profile) => 
-      showResult(profile)
+      showFollowersResult(profile)
+    )
+    .catch(err => console.error(err) && process.exit(1))
+
+
+getTwitterUserProfileWithOAuth2('elcorteingles')
+    .then((profile) => 
+      showIdResult(profile)
     )
     .catch(err => console.error(err) && process.exit(1))
 
@@ -27,7 +34,12 @@ async function getTwitterUserProfileWithOAuth2 (username = 'elcorteingles') {
     .then((res) => JSON.parse(res.body))
 }
 
-async function showResult(result){
+async function showFollowersResult(result){
   console.log('Followers el corte ingles', result.followers_count);
-  process.exit(0);
+ 
+}
+
+async function showIdResult(result){
+  console.log('Id user el corte ingles', result.id);
+
 }
