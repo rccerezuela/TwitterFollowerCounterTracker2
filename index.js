@@ -1,34 +1,32 @@
-const OAuth = require('oauth')
-const got = require('got')
-const { promisify } = require('util')
-const firebase = require("firebase");
+const {OAuth} = require('oauth')
+const {got} = require('got')
+const {promisify} = require('util')
+const {firebase} = require("firebase");
 
- // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCgduBXRzvbX-ThWP_R5t_xcxYEMPqVzjc",
-    authDomain: "twitterfollowercountertracker2.firebaseapp.com",
-    databaseURL: "https://twitterfollowercountertracker2.firebaseio.com",
-    projectId: "twitterfollowercountertracker2",
-    storageBucket: "twitterfollowercountertracker2.appspot.com",
-    messagingSenderId: "978600642574",
-    appId: "1:978600642574:web:e02cd7a2839e83320d945f"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+
+var firebaseConfig = {
+  apiKey: process.env['FIREBASE_API_KEY'],
+  authDomain: "twitterfollowercountertracker2.firebaseapp.com",
+  databaseURL: "https://twitterfollowercountertracker2.firebaseio.com",
+  projectId: "twitterfollowercountertracker2",
+  storageBucket: "twitterfollowercountertracker2.appspot.com",
+  messagingSenderId: "978600642574",
+  appId: "1:978600642574:web:e02cd7a2839e83320d945f"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 
 
 getTwitterUserProfileWithOAuth2('elcorteingles')
-    .then((profile) => 
-      showFollowersResult(profile)
-    )
-    .catch(err => console.error(err) && process.exit(1))
+  .then((profile) => showFollowersResult(profile))
+  .catch(err => console.error(err) && process.exit(1))
 
 
 async function getTwitterUserProfileWithOAuth2 (username = 'elcorteingles') {
   var oauth2 = new OAuth.OAuth2(
-    "8AwdDjAbUCw5FtYG1YrVLvi3o",
-    "pYOwSP8vWzxDP4iHsciu7twwOw8HFSEL560J4LOsxjTYnxATon",
+    process.env['TWITTER_KEY'],
+    process.env['TWITTER_SECRET'],
     'https://api.twitter.com/', null, 'oauth2/token', null
   )
   const getOAuthAccessToken = promisify(oauth2.getOAuthAccessToken.bind(oauth2))
