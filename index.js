@@ -1,7 +1,7 @@
-const {OAuth} = require('oauth')
-const {got} = require('got')
+const OAuth = require('oauth')
+const got = require('got')
 const {promisify} = require('util')
-const {firebase} = require("firebase");
+const firebase = require("firebase");
 
 
 var firebaseConfig = {
@@ -15,7 +15,6 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 
 
 getTwitterUserProfileWithOAuth2('elcorteingles')
@@ -48,14 +47,16 @@ async function showFollowersResult(result){
     "twitter_name": "elcorteingles",
     "data_date": Date.now()
   }
+  
+  console.log(fireBaseRegister); 
 
   const database = firebase.database();
   let dataRef = database.ref('measures');
   let dataPush = dataRef.push(fireBaseRegister);
 
   dataRef.once('value', snapshot => {
-  console.log(snapshot.val());
-});
+    console.log(snapshot.val()); 
+  });
 
 /*
 const date =  fireBaseRegister.data_date;
