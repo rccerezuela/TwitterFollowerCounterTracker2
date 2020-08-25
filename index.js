@@ -48,23 +48,7 @@ async function showFollowersResult(result){
     "data_date": Date.now()
   }
   
-  console.log(fireBaseRegister); 
-
   const database = firebase.database();
   let dataRef = database.ref('measures');
-  let dataPush = dataRef.push(fireBaseRegister);
-
-  dataRef.once('value', snapshot => {
-    console.log(snapshot.val()); 
-  });
-
-/*
-const date =  fireBaseRegister.data_date;
-const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' }) 
-const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(date ) 
-
-console.log(`${day}-${month}-${year }`)
-*/
-
- 
+  let dataPush = dataRef.push(fireBaseRegister); 
 }
