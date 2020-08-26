@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "firebase": "^7.19.0",
+    "firebase-tools": "^8.9.0",
     "got": "^11.5.2",
     "oauth": "^0.9.15"
   }

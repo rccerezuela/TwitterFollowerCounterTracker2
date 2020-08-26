@@ -18,7 +18,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 getTwitterUserProfileWithOAuth2('elcorteingles')
-  .then((profile) => showFollowersResult(profile))
+  .then((profile) => showFollowersResult(profile) )
   .catch(err => console.error(err) && process.exit(1))
 
 
@@ -50,5 +50,7 @@ async function showFollowersResult(result){
   
   const database = firebase.database();
   let dataRef = database.ref('measures');
-  let dataPush = dataRef.push(fireBaseRegister); 
+  let dataPush = await dataRef.push(fireBaseRegister); 
+
+  console.log(fireBaseRegister);
 }
